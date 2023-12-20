@@ -1,27 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Montserrat, Roboto, "Helvetica Neue", sans-serif; color: #000000;background-color: #d1d1fd; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-tr from-[#6875a0e1] to-[#2c78f3]  py-3 px-6 rounded-lg  hover:bg-gradient-to-r hover:from-[#ac5e4ae1] hover:to-[#c4af35] text-white font-semibold active:scale-95;
+  }
+
+  .anchor-custom {
+    @apply hover:underline underline-offset-4 text-white text-base;
+  }
+
+  .input-primary {
+    @apply bg-grey px-6 py-2 focus:outline-none textfont1 font-light rounded-md;
+  }
+
+  .shadow-primary{
+    @apply shadow-[2px_3px_8px_2px_#a9a9a9] ;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::-webkit-scrollbar {
+  width: 5px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #212121;
+}
+
+.swiper-pagination {
+  position: unset !important;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.swiper-pagination-bullet-active {
+  background-image: linear-gradient(
+    to right,
+    #045b63 0%,
+    #045b63 100%
+  ) !important;
+  /* border: 2px solid rgb(255, 255, 255) !important; */
+}
+
+.swiper-pagination-bullet {
+  background-color: #d1d1fd !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.swiper-slide,
+.swiper-slide-active {
+  display: grid !important;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.horizontal-gradient {
+  background: linear-gradient(to right, #950dc7, #6b70fb, #3ba6f9, #24ebf6);
+}
+.horizontal-gradient2 {
+  background: linear-gradient(to right, #c73b0d, #eb882b, #f9bf78, #f7e89e);
+}
+.strokeme {
+  text-shadow:
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff;
+}
+
