@@ -9,4 +9,5 @@ export interface IProfileUser {
   photoURL?: string | null;
   influencers_in?: string[] | null;
   influencers_yt?: string[] | null;
+  isProfileComplete?: boolean;
 }

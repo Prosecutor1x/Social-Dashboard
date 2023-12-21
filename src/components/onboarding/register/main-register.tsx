@@ -61,7 +61,7 @@ const MainRegister = () => {
 
       // Save additional data like phone number and address to the database
 
-      router.push("/register/create-profile");
+      router.push("/auth/register/create-profile");
 
       toast({
         title: "Success",

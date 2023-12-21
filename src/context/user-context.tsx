@@ -74,6 +74,7 @@ export const UserContextProvider = ({ children }: Props) => {
         photoURL: data.photoURL || null,
         influencers_in: data.influencers_in || null,
         influencers_yt: data.influencers_yt || null,
+        isProfileComplete: true,
       });
       console.log(`Created user ${uid}`, data);
     } catch (error) {

@@ -16,14 +16,14 @@ export default function Home() {
         <br />
         <button
           className="btn btn-primary w-1/4"
-          onClick={() => router.push("/login")}
+          onClick={() => router.push("/auth/login")}
         >
           {" "}
           Login
         </button>
         <button
           className="btn btn-primary w-1/4"
-          onClick={() => router.push("/register")}
+          onClick={() => router.push("/auth/register")}
         >
           Register
         </button>
