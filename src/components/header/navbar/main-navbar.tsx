@@ -17,7 +17,23 @@ import {
   HamburgerIcon,
   RepeatIcon,
 } from "@chakra-ui/icons";
+import { useAuth } from "@/context/auth-context";
 
 export default function Navbar() {
-  return <div>NAvbar</div>;
+  const { logout } = useAuth();
+
+  const handleLogOut = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+      NAvbar
+      <button onClick={handleLogOut}>Logout</button>
+    </>
+  );
 }

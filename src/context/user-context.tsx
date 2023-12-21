@@ -63,7 +63,19 @@ export const UserContextProvider = ({ children }: Props) => {
 
   const createUser = async (uid: string, data: Partial<IProfileUser>) => {
     try {
-      await setDoc(doc(db, "users", uid), data);
+      const userRef = doc(db, "users", uid);
+      await setDoc(userRef, {
+        uid: data.uid || "",
+        email: data.email || null,
+        firstName: data.firstName || null,
+        lastName: data.lastName || null,
+        displayName: data.displayName || null,
+        phone: data.phone || null,
+        address: data.address || null,
+        photoURL: data.photoURL || null,
+        influencers_in: data.influencers_in || null,
+        influencers_yt: data.influencers_yt || null,
+      });
       console.log(`Created user ${uid}`, data);
     } catch (error) {
       console.error("Error creating user:", error);
