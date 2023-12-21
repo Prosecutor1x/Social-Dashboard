@@ -40,7 +40,7 @@ function Navbar() {
               router.push("/");
             }}
           />
-          <h1 className="text-">FrameLux</h1>
+          <h1 className="text-white">FrameLux</h1>
         </div>
 
         {authUser != null ? (
