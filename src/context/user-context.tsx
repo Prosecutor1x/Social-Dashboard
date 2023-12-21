@@ -17,6 +17,7 @@ import {
   onSnapshot,
   setDoc,
   DocumentData,
+  updateDoc,
 } from "firebase/firestore";
 
 interface Props {
@@ -54,7 +55,7 @@ export const UserContextProvider = ({ children }: Props) => {
 
   const updateUser = async (uid: string, data: Partial<IProfileUser>) => {
     try {
-      await setDoc(doc(db, "users", uid), data);
+      await updateDoc(doc(db, "users", uid), data);
       console.log(`Updated user data for ${uid}`, data);
     } catch (error) {
       console.error("Error updating user:", error);
@@ -64,9 +65,7 @@ export const UserContextProvider = ({ children }: Props) => {
   const createUser = async (uid: string, data: Partial<IProfileUser>) => {
     try {
       const userRef = doc(db, "users", uid);
-      await setDoc(userRef, {
-        uid: data.uid || "",
-        email: data.email || null,
+      await updateDoc(userRef, {
         firstName: data.firstName || null,
         lastName: data.lastName || null,
         displayName: data.displayName || null,

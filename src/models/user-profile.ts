@@ -1,6 +1,6 @@
 export interface IProfileUser {
   uid: string;
-  email?: string | null;
+  email: string;
   firstName?: string | null;
   lastName?: string | null;
   displayName?: string | null;
