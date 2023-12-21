@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <div className=" flex flex-col justify-center items-center h-screen space-y-6">
+      <div className="flex flex-col items-center p-12 justify-center  space-y-6">
         <h1 className="font-monsterrat">Welcome to the Social Dashboard</h1>
         <p>Description/images</p>
         <br />
