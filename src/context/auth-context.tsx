@@ -101,7 +101,7 @@ export function AuthContextProvider({ children }: any) {
 
   const logout = async () => {
     await signOut(auth);
-    window.location.href = "/login";
+    window.location.href = "/auth/login";
   };
 
   useEffect(() => {

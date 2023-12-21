@@ -1,13 +1,12 @@
 import MainRegister from "@/components/onboarding/register/main-register";
+import RouteProtection from "@/components/shared/route-protection";
 import React from "react";
 
-type Props = {};
-
-const Register = (props: Props) => {
+const Register = () => {
   return (
-    <div>
+    <RouteProtection>
       <MainRegister />
-    </div>
+    </RouteProtection>
   );
 };
 
