@@ -16,7 +16,6 @@ import {
   fetchSignInMethodsForEmail,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { db } from "@/utils/firebase.config";
 
 const ForgotPasswordModal = () => {
   const [email, setEmail] = useState("");

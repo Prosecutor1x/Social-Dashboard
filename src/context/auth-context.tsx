@@ -60,7 +60,7 @@ export function AuthContextProvider({ children }: any) {
         const userSnap = await getDoc(doc(db, "users", user.uid));
         if (!userSnap.exists()) {
           await setDoc(doc(db, "users", user.uid), {
-            name: user.displayName,
+            displayName: user.displayName,
             email: user.email,
             photoURL: user.photoURL,
             uid: user.uid,
