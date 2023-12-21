@@ -9,6 +9,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Montserrat, Roboto, "Helvetica Neue", sans-serif;
@@ -18,7 +19,7 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-tr from-[#6875a0e1] to-[#2c78f3]  py-3 px-6 rounded-lg  hover:bg-gradient-to-r hover:from-[#ac5e4ae1] hover:to-[#c4af35] text-white font-semibold active:scale-95;
+    @apply bg-gradient-to-tr from-[#7694f5e1] to-[#2c78f3] py-3 px-6 rounded-lg hover:bg-gradient-to-r hover:from-[#6769bbe1] hover:to-[#c435b1] text-white font-semibold active:scale-95;
   }
 
   .anchor-custom {
@@ -86,9 +87,11 @@ body {
 .horizontal-gradient {
   background: linear-gradient(to right, #950dc7, #6b70fb, #3ba6f9, #24ebf6);
 }
+
 .horizontal-gradient2 {
   background: linear-gradient(to right, #c73b0d, #eb882b, #f9bf78, #f7e89e);
 }
+
 .strokeme {
   text-shadow:
     -2px -2px 0 #fff,
