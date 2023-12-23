@@ -69,7 +69,7 @@ export const UserContextProvider = ({ children }: Props) => {
         firstName: data.firstName || null,
         lastName: data.lastName || null,
         displayName: data.displayName || null,
-        phone: data.phone || null,
+        phone: "+91" + data.phone || null,
         address: data.address || null,
         photoURL: data.photoURL || null,
         influencers_in: data.influencers_in || null,

@@ -146,7 +146,7 @@ const MainLogin = () => {
           <p className="center margin-top text-base text-center py-4">
             New to our platform?
             <Link
-              href="/register"
+              href="/auth/register"
               className="sign-up-link text-purple-600 text-xl animate-pulse"
             >
               &nbsp; Sign Up!

@@ -1,3 +1,4 @@
-export interface IRequestsUser {
-  req?: string[] | null;
+export interface IRequestInfluencer {
+  req: string[] | null;
+  type: "youtube" | "instagram" | null;
 }
