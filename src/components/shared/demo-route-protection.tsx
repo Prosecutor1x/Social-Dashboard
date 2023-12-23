@@ -22,7 +22,10 @@ const RouteProtection2 = ({ children }: Props) => {
 
   useEffect(() => {
     const routeCheck = async () => {
-      if (router.pathname === "/dashboard") {
+      if (
+        router.pathname === "/dashboard" ||
+        router.pathname === "/dashboard/influencer/[id]"
+      ) {
         try {
           if (!authUser) {
             await redirectTo("/auth/login");

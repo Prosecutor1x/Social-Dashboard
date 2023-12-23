@@ -7,8 +7,8 @@ import TabInfluencer from "./tab-influencer-dashboard";
 const MainDashboard = () => {
   return (
     <div>
-      <Tabs isFitted variant="enclosed">
-        <TabList mb="1em">
+      <Tabs isFitted variant="soft-rounded" colorScheme="teal">
+        <TabList mb="2em">
           <Tab>Influencers</Tab>
           <Tab>Brands</Tab>
         </TabList>

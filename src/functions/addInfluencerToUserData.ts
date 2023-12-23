@@ -1,14 +1,15 @@
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "@/utils/firebase.config";
-import { updateDoc, arrayUnion, doc } from "firebase/firestore";
 
 export async function updateInfluencerInUserDoc(
   userId: string,
   influencer: string,
+  action: "add" | "delete",
   type: "influencers_in" | "influencers_yt",
 ) {
   try {
-    if (!userId || !influencer || !type) {
-      throw new Error("User ID, influencer data, or type is missing.");
+    if (!userId || !influencer || !type || !action) {
+      throw new Error("User ID, influencer data, action, or type is missing.");
     }
 
     const userDocRef = doc(db, "users", userId); // Assuming 'users' is your collection name
@@ -16,13 +17,24 @@ export async function updateInfluencerInUserDoc(
     const fieldToUpdate =
       type === "influencers_in" ? "influencers_in" : "influencers_yt";
 
-    // Update the specified field inside the user document by appending the new influencer
+    let updateAction: any = {};
+    if (action === "add") {
+      updateAction = arrayUnion(influencer);
+    } else if (action === "delete") {
+      updateAction = arrayRemove(influencer);
+    } else {
+      throw new Error("Invalid action provided.");
+    }
+
+    // Update the specified field inside the user document based on the action
     await updateDoc(userDocRef, {
-      [fieldToUpdate]: arrayUnion(influencer),
+      [fieldToUpdate]: updateAction,
     });
 
     console.log(
-      `Influencer updated successfully in the '${fieldToUpdate}' field of the user document.`,
+      `Influencer ${
+        action === "add" ? "added" : "deleted"
+      } successfully from the '${fieldToUpdate}' field of the user document.`,
     );
 
     return true; // or any other success indicator if needed

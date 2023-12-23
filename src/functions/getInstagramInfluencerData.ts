@@ -14,9 +14,7 @@ import { IInfluencerProfile } from "@/models/influencer-profile";
 
 const influencersInstaCollection = collection(db, "influencers_insta");
 
-async function getInfluencerDoc(
-  influencerId: string,
-): Promise<{
+async function getInfluencerDoc(influencerId: string): Promise<{
   id: string;
   data: Partial<IInfluencerProfile>;
   type: "instagram";
