@@ -1,22 +1,23 @@
+import { useUserContext } from "@/context/user-context";
+import { IInfluencerProfile } from "@/models/influencer-profile";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import React from "react";
+import TabInfluencer from "./tab-influencer-dashboard";
 
-type Props = {};
-
-const MainDashboard = (props: Props) => {
+const MainDashboard = () => {
   return (
     <div>
       <Tabs isFitted variant="enclosed">
         <TabList mb="1em">
-          <Tab>One</Tab>
-          <Tab>Two</Tab>
+          <Tab>Influencers</Tab>
+          <Tab>Brands</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <p>one!</p>
+            <TabInfluencer />
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <p>Brandss</p>
           </TabPanel>
         </TabPanels>
       </Tabs>

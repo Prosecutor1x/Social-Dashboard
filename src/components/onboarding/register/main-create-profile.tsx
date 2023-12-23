@@ -22,7 +22,7 @@ function MainCreateProfile({}: Props) {
   const [formData, setFormData] = useState<Partial<IProfileUser>>({
     displayName: "",
     photoURL: "",
-    phone: "",
+    phone: null,
     firstName: "",
     lastName: "",
     address: "",
@@ -36,43 +36,48 @@ function MainCreateProfile({}: Props) {
     setLoading(true);
     try {
       // Validation check for username length
-      if (formData && formData.displayName && formData.displayName.length < 6) {
+      if (
+        formData &&
+        formData.displayName &&
+        formData.displayName.length > 6 &&
+        formData.phone &&
+        formData.phone.length === 10
+      ) {
+        await createUser(user?.uid as string, formData);
+        toast({
+          title: "Profile Created",
+          description: "Your profile has been successfully created!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+
+        // Reset form data after successful creation
+        setFormData({
+          displayName: "",
+          photoURL: "",
+          phone: null,
+          firstName: "",
+          lastName: "",
+          address: "",
+        });
+
+        router.push("/dashboard");
+
+        return;
+      } else {
         toast({
           title: "Invalid Username",
-          description: "Username must be at least 6 characters long.",
+          description:
+            "Username must be at least 6 characters long and phone number must be 10 digits long.",
           status: "error",
           duration: 3000,
           isClosable: true,
         });
-        return;
       }
-
-      // Create the profile
-      await createUser(user?.uid as string, formData);
-
-      // Display success message
-      toast({
-        title: "Profile Created",
-        description: "Your profile has been successfully created!",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-
-      // Reset form data after successful creation
-      setFormData({
-        displayName: "",
-        photoURL: "",
-        phone: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-      });
-
-      router.push("/dashboard");
     } catch (error) {
       console.error("Error creating profile:", error);
-      // Display error message if creation fails
+
       toast({
         title: "Error",
         description: "Failed to create the profile. Please try again.",
@@ -94,7 +99,7 @@ function MainCreateProfile({}: Props) {
 
         {/* Username */}
         <InputGroup className="flex-col">
-          <FormLabel>Username</FormLabel>
+          <FormLabel>Username *</FormLabel>
           <Input
             placeholder="Username"
             value={formData.displayName as string}
@@ -103,7 +108,8 @@ function MainCreateProfile({}: Props) {
             }
             type="text"
             id="displayName"
-            required={true}
+            maxLength={12}
+            required
           />
         </InputGroup>
 
@@ -118,7 +124,7 @@ function MainCreateProfile({}: Props) {
             }
             type="text"
             id="firstName"
-            required={true}
+            maxLength={12}
           />
         </InputGroup>
 
@@ -131,23 +137,25 @@ function MainCreateProfile({}: Props) {
             onChange={(e) =>
               setFormData({ ...formData, lastName: e.target.value })
             }
-            type="text"
+            type="tel"
             id="lastName"
-            required={true}
+            maxLength={12}
           />
         </InputGroup>
         {/* Phone Number */}
         <InputGroup className="flex-col">
-          <FormLabel>Phone Number</FormLabel>
+          <FormLabel>Phone Number *</FormLabel>
           <Input
             placeholder="Phone Number"
             value={formData.phone as string}
             onChange={(e) =>
               setFormData({ ...formData, phone: e.target.value })
             }
-            type="text"
+            type="tel"
             id="phone"
-            required={true}
+            pattern="[0-9]{10}"
+            maxLength={10}
+            required
           />
         </InputGroup>
 

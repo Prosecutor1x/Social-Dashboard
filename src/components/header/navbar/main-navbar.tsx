@@ -29,7 +29,7 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-[#3b42a1] py-2 px-10 font-quicksand font-semibold sticky top-0  ">
+    <div className="bg-[#3b42a1] py-2 px-10 font-quicksand font-semibold sticky top-0">
       <div className="flex justify-between items-center">
         <div className="flex items-center  gap-10 ">
           <img

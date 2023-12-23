@@ -16,7 +16,7 @@ const RouteProtection = ({ children }: Props) => {
     try {
       if (!authUser) {
         await router.push("/auth/login");
-      } else if (user && !user.isProfileComplete) {
+      } else if (authUser && !user?.isProfileComplete) {
         await router.push("/auth/register/create-profile");
       }
     } catch (error) {
@@ -26,8 +26,15 @@ const RouteProtection = ({ children }: Props) => {
   };
   const loginCheck = async () => {
     try {
-      if (authUser) {
+      if (authUser && user?.isProfileComplete) {
         await router.push("/dashboard");
+      } else if (authUser && !user?.isProfileComplete) {
+        await router.push("/auth/register/create-profile");
+      } else if (
+        !authUser &&
+        router.pathname === "/auth/register/create-profile"
+      ) {
+        await router.push("/auth/login");
       }
     } catch (error) {
       console.error("Error occurred during route navigation:", error);
@@ -36,8 +43,7 @@ const RouteProtection = ({ children }: Props) => {
   useEffect(() => {
     if (router.pathname === "/dashboard") {
       routeCheck();
-    }
-    if (
+    } else if (
       router.pathname === "/auth/login" ||
       router.pathname === "/auth/register" ||
       router.pathname === "/auth/register/create-profile"
