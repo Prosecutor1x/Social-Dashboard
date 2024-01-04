@@ -13,7 +13,7 @@ const TabInfluencer = () => {
   const [influencerDetails, setInfluencerDetails] = useState<
     { id: string; data: Partial<IInfluencerProfile>; type: "instagram" }[]
   >([]);
-  const [requested, setRequested] = useState([""]); // [ {id:"123",type:"instagram"}
+
   const { user } = useUserContext();
 
   useEffect(() => {
