@@ -68,33 +68,42 @@ function Navbar() {
             FrameLux
           </ChakraLink>
         </Flex>
-
-        <Box display={{ base: "none", md: "block" }}>
-          <Menu>
-            <MenuButton
-              as={Button}
-              variant="ghost"
-              style={{ backgroundColor: "transparent" }}
-            >
-              <Avatar
-                name={user?.displayName as string}
-                src={user?.photoURL as string}
-              />
-            </MenuButton>
-            <MenuList>
-              <MenuItem as={ChakraLink} href="/">
-                Home
-              </MenuItem>
-              <MenuItem as={ChakraLink} href="/dashboard">
-                Dashboard
-              </MenuItem>
-              <MenuItem as={ChakraLink} href="/profile">
-                Profile
-              </MenuItem>
-              <MenuItem onClick={handleLogOut}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
-        </Box>
+        {authUser !== null ? (
+          <>
+            {" "}
+            <Box display={{ base: "none", md: "block" }}>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  variant="ghost"
+                  style={{ backgroundColor: "transparent" }}
+                >
+                  <Avatar
+                    name={user?.displayName as string}
+                    src={user?.photoURL as string}
+                  />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem as={ChakraLink} href="/">
+                    Home
+                  </MenuItem>
+                  <MenuItem as={ChakraLink} href="/dashboard">
+                    Dashboard
+                  </MenuItem>
+                  <MenuItem as={ChakraLink} href="/profile">
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+          </>
+        ) : (
+          <div className="space-x-2">
+            <button className="btn-primary py-2">Register</button>
+            <button className="btn-primary py-2">Log In</button>
+          </div>
+        )}
 
         <IconButton
           aria-label="Open menu"
