@@ -10,4 +10,5 @@ export interface IProfileUser {
   influencers_in?: string[] | null;
   influencers_yt?: string[] | null;
   isProfileComplete?: boolean;
+  companyName?: string | null;
 }

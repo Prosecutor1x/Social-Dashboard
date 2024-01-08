@@ -36,77 +36,108 @@ const TabInfluencer = () => {
     }
   }, [user?.influencers_in]);
 
+  const formatFollowers = (followers: number): string => {
+    if (followers >= 1000000) {
+      return (followers / 1000000).toFixed(1) + " M";
+    } else if (followers >= 1000) {
+      return (followers / 1000).toFixed(1) + " K";
+    } else {
+      return followers.toString();
+    }
+  };
+
   return (
-    <div className="flex flex-col space-y-6  text-xs md:text-sm lg:text-lg ">
-      <h1 className="text-2xl font-semibold text-center">Influencers</h1>
-      <div className="grid grid-cols-5 gap-4 w-full text-center ">
-        {/* Table Headers */}
-        <div className="col-span-6 grid grid-cols-6 bg-black text-white p-1 rounded-xl shadow-primary  ">
-          <div className="style-table ">Account</div>
-          <div className="style-table">Uploads</div>
-          <div className="style-table">Followers/Subscribers</div>
-          <div className="style-table">Engagements</div>
-          <div className="style-table">Followers Gained</div>
+    <div className="flex flex-col  text-xs  lg:text-base  gap-6 md:p-6">
+      <div className="bg-opacity-50 bg-blur-md bg-gray-900 px-6 py-2 rounded-xl ">
+        <h1 className="text-xl leading-none ">
+          Welcome Back{" "}
+          <span className="text-4xl ">
+            {" "}
+            <br />
+            {user?.firstName}
+          </span>
+        </h1>
 
-          {/* Add more headers for other fields if needed */}
-        </div>
-
-        {/* Influencer Details */}
-        <div className="col-span-6 ">
-          {influencerDetails?.map((detail, index) => (
-            <div
-              key={index}
-              className={`p-2 ${
-                index % 2 === 0 ? "bg-teal-100" : "bg-white"
-              } col-span-6 grid grid-cols-6 rounded-xl shadow-primary  mb-4 `}
-            >
-              <div className="style-table">
-                <Link href={`/dashboard/influencer/${detail.id}`}>
-                  {detail.id}
-                </Link>
-              </div>
-              <div className="style-table">{detail.data.uploads}</div>
-              <div className="style-table">{detail.data.followers}</div>
-              <div className="style-table">
-                {detail.data.avg_eng?.toFixed(2)}
-              </div>
-              <div className="style-table">
-                {detail.data.avg_fwl_gained?.toFixed(2)}
-              </div>
-              <div className="style-table flex items-center justify-center gap-2">
-                <Link
-                  href={`/dashboard/influencer/${detail.id}`}
-                  className="text-[26px]"
-                >
-                  {detail.type === "instagram" && <RiInstagramFill />}
-                </Link>
-                <Button
-                  colorScheme="red"
-                  size="xs"
-                  onClick={async () => {
-                    const platform =
-                      detail?.type === "instagram"
-                        ? "influencers_in"
-                        : "influencers_yt";
-                    await updateInfluencerInUserDoc(
-                      user?.uid as string,
-                      detail.id,
-                      "delete",
-                      platform,
-                    );
-                  }}
-                >
-                  Delete
-                </Button>
-              </div>
-              <div></div>
-            </div>
-          ))}
-        </div>
+        <h1 className="text-xl py-8 ">
+          Glad To See You!!
+          <span className="text-2xl">
+            {" "}
+            <br />
+            Explore Your Data
+          </span>{" "}
+        </h1>
       </div>
 
+      <div className="overflow-x-auto  ">
+        <div className="  bg-opacity-50 bg-blur-md bg-gray-900 p-6 rounded-lg w-[1000px] sm:w-full ">
+          <h1 className="text-2xl font-semibold pb-6 pt-2 ">Creators</h1>
+          <div className="grid grid-cols-5 gap-4 text-center text-white border-collapse ">
+            {/* Table Headers */}
+            <div className="col-span-6 grid grid-cols-6 p-1 border-b-2 border-gray-500 text-base text-gray-400 font-semibold ">
+              <div className="style-table">Account</div>
+              <div className="style-table">Uploads</div>
+              <div className="style-table">Followers/Subscribers</div>
+              <div className="style-table">Engagements</div>
+              <div className="style-table">Followers Gained</div>
+              {/* Add more headers for other fields if needed */}
+            </div>
+
+            {/* Influencer Details */}
+            <div className="col-span-6 ">
+              {influencerDetails?.map((detail, index) => (
+                <div
+                  key={index}
+                  className={`p-2 col-span-6 grid grid-cols-6 border-b-2 border-gray-500 mb-4 text-base `}
+                >
+                  <div className="style-table">
+                    <Link href={`/dashboard/influencer/${detail.id}`}>
+                      {detail.id}
+                    </Link>
+                  </div>
+                  <div className="style-table">{detail.data.uploads}</div>
+                  <div className="style-table">
+                    {formatFollowers(detail.data.followers as number)}
+                  </div>
+                  <div className="style-table">
+                    {detail.data.avg_eng?.toFixed(2)}
+                  </div>
+                  <div className="style-table">
+                    {detail.data.avg_fwl_gained?.toFixed(2)}
+                  </div>
+                  <div className="style-table flex items-center justify-center gap-2">
+                    <Link
+                      href={`/dashboard/influencer/${detail.id}`}
+                      className="text-[26px]"
+                    >
+                      {detail.type === "instagram" && <RiInstagramFill />}
+                    </Link>
+                    <Button
+                      colorScheme="red"
+                      size="xs"
+                      onClick={async () => {
+                        const platform =
+                          detail?.type === "instagram"
+                            ? "influencers_in"
+                            : "influencers_yt";
+                        await updateInfluencerInUserDoc(
+                          user?.uid as string,
+                          detail.id,
+                          "delete",
+                          platform,
+                        );
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
       <InfluencerRequestModal />
-      <div>
+      <div className="">
         <h1 className=" p-2 rounded-lg  font-semibold">
           List of Influencers Requested
         </h1>

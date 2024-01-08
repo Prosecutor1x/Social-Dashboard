@@ -44,8 +44,8 @@ function Navbar() {
   return (
     <Box
       as="nav"
-      bg="#3b42a1"
-      py="2"
+      bg="#131532"
+      py="4"
       px="4"
       fontWeight="semibold"
       position="sticky"
@@ -83,7 +83,7 @@ function Navbar() {
                     src={user?.photoURL as string}
                   />
                 </MenuButton>
-                <MenuList>
+                <MenuList style={{ color: "black" }}>
                   <MenuItem as={ChakraLink} href="/">
                     Home
                   </MenuItem>
@@ -119,7 +119,7 @@ function Navbar() {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Menu</DrawerHeader>
+            <DrawerHeader className="text-black">Menu</DrawerHeader>
             <DrawerBody>
               <Flex direction="column">
                 <Link href="/">
