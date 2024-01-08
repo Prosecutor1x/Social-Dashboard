@@ -7,11 +7,10 @@
 
 html,
 body {
-  height: 100%;
-  margin: 0;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+
   font-family: Montserrat, Roboto, "Helvetica Neue", sans-serif;
-  color: #000000;
-  background-color: #d1d1fd;
 }
 
 @layer components {
@@ -35,23 +34,58 @@ body {
   }
 }
 
+@layer utilities {
+  .bg-secondary {
+    background: linear-gradient(135deg, #453d6bb6, #454c57, #031738);
+  }
+
+  .bg-primary2 {
+    background: linear-gradient(
+      135deg,
+      #1c0377,
+      #130156,
+      #0e0042,
+      #3915bc,
+      #300eaa,
+      #1c0377,
+      #130156,
+      #0e0042
+    );
+  }
+
+  .bg-primary {
+    background: linear-gradient(
+      135deg,
+      #1c0377 0%,
+      #130156 32.5%,
+
+      #1c0377 62.5%,
+      #130156 75%,
+      #0e0042 87.5%
+    );
+  }
+  /* Define more utility classes for other gradients if needed */
+}
+
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 5px;
+  background-color: #0e0042;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #555;
+  background-color: #d8d8d8;
+  border-radius: 8px;
+  width: 2px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #212121;
+  background-color: #b5b5b5;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
 }
 
 .swiper-pagination {

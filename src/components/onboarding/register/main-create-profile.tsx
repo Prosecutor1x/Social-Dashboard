@@ -26,6 +26,7 @@ function MainCreateProfile({}: Props) {
     firstName: "",
     lastName: "",
     address: "",
+    companyName: "",
   });
   const toast = useToast();
   const router = useRouter();
@@ -60,6 +61,7 @@ function MainCreateProfile({}: Props) {
           firstName: "",
           lastName: "",
           address: "",
+          companyName: "",
         });
 
         router.push("/dashboard");
@@ -91,10 +93,13 @@ function MainCreateProfile({}: Props) {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen horizontal-gradient">
-      <div className="flex-col border-2 p-12 rounded-lg bg-white w-1/2">
+    <div className="flex md:justify-around justify-center items-center h-screen gap-3 ">
+      <div className=" md:block hidden">
+        <img src="/lg-page.png" alt="login-page" className=" h-screen" />
+      </div>
+      <div className="flex flex-col  border-2 gap-2 p-12 rounded-lg bg-gray-800 bg-opacity-50 md:w-1/2 ">
         <h1 className="text-center text-2xl font-semibold mb-4">
-          Create Profile
+          Create Agent Profile
         </h1>
 
         {/* Username */}
@@ -113,7 +118,7 @@ function MainCreateProfile({}: Props) {
           />
         </InputGroup>
 
-        {/* First Name */}
+        {/* First Name
         <InputGroup className="flex-col">
           <FormLabel>First Name</FormLabel>
           <Input
@@ -128,7 +133,7 @@ function MainCreateProfile({}: Props) {
           />
         </InputGroup>
 
-        {/* Last Name */}
+        Last Name
         <InputGroup className="flex-col">
           <FormLabel>Last Name</FormLabel>
           <Input
@@ -136,6 +141,20 @@ function MainCreateProfile({}: Props) {
             value={formData.lastName as string}
             onChange={(e) =>
               setFormData({ ...formData, lastName: e.target.value })
+            }
+            type="tel"
+            id="lastName"
+            maxLength={12}
+          />
+        </InputGroup> */}
+        {/* Company Name */}
+        <InputGroup className="flex-col">
+          <FormLabel>Company Name</FormLabel>
+          <Input
+            placeholder="Company Name"
+            value={formData.companyName as string}
+            onChange={(e) =>
+              setFormData({ ...formData, companyName: e.target.value })
             }
             type="tel"
             id="lastName"

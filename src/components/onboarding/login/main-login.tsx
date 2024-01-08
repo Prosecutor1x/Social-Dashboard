@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useAuth } from "@/context/auth-context";
 import ForgotPasswordModal from "@/components/onboarding/login/modal-passwordreset";
+import Image from "next/image";
 
 interface FormData {
   email: string;
@@ -76,8 +77,11 @@ const MainLogin = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen horizontal-gradient">
-      <div className="flex-col  border-2  p-12 rounded-lg  bg-white w-1/3">
+    <div className="flex md:justify-around justify-center items-center h-screen  ">
+      <div className=" md:block hidden">
+        <img src="/lg-page.png" alt="login-page" className=" h-screen" />
+      </div>
+      <div className="flex flex-col  border-2  p-12 rounded-lg bg-gray-800 bg-opacity-50 md:w-1/3 ">
         <h1 className="text-center text-2xl font-semibold  mb-4">LOGIN</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="flex-col space-y-6">
           <FormControl isInvalid={!!errors.email}>

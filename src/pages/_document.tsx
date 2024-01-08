@@ -16,7 +16,7 @@ export default function Document() {
         rel="stylesheet"
       ></link>
       <Head />
-      <body className="font-monsterrat bg-slate-200">
+      <body className="font-monsterrat text-white bg-primary ">
         <Main />
         <NextScript />
       </body>
