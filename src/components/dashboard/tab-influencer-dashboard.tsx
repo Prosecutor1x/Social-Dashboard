@@ -8,6 +8,7 @@ import { getInstaInfluencerDetails } from "@/functions/getInstagramInfluencerDat
 import Link from "next/link";
 import { Button } from "@chakra-ui/react";
 import { updateInfluencerInUserDoc } from "@/functions/addInfluencerToUserData";
+import { FaceBookSignInComponent } from "../auth/firebaseFacebook";
 
 const TabInfluencer = () => {
   const [influencerDetails, setInfluencerDetails] = useState<
@@ -158,6 +159,7 @@ const TabInfluencer = () => {
           </div>
         )}
       </div>
+      <FaceBookSignInComponent />
     </div>
   );
 };
