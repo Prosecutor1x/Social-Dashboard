@@ -32,13 +32,12 @@ body {
   .style-table {
     @apply rounded-md flex justify-center items-center text-center;
   }
+  .bg-secondary {
+    @apply bg-opacity-50 bg-gray-900;
+  }
 }
 
 @layer utilities {
-  .bg-secondary {
-    background: linear-gradient(135deg, #453d6bb6, #454c57, #031738);
-  }
-
   .bg-primary2 {
     background: linear-gradient(
       135deg,

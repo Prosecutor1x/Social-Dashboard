@@ -11,4 +11,5 @@ export interface IInfluencerProfile {
   uploads?: number | null;
   src?: string[] | null;
   dp?: string | null;
+  isConnected?: "connected" | "pending" | "not-connected" | null;
 }
